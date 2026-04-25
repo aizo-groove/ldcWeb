@@ -1,17 +1,197 @@
 ---
+import Layout from "../layouts/Layout.astro";
 
+const VERSION = "0.5.0";
+const GITHUB = "https://github.com/aizo-groove/ldc";
+const KOFI = "https://ko-fi.com/aizogroove";
+const DL_MAC_ARM = `https://github.com/aizo-groove/ldc/releases/download/v${VERSION}/LDC_${VERSION}_aarch64.dmg`;
+const DL_MAC_INTEL = `https://github.com/aizo-groove/ldc/releases/download/v${VERSION}/LDC_${VERSION}_x64.dmg`;
+const DL_WIN = `https://github.com/aizo-groove/ldc/releases/download/v${VERSION}/LDC_${VERSION}_x64-setup.exe`;
+
+const features = [
+  { icon: "🧾", title: "Vente & tickets", desc: "Catalogue produits, panier, reçus thermiques via imprimante réseau." },
+  { icon: "🗺️", title: "Plan de salle", desc: "Gestion des tables, commandes par table, transfert de table." },
+  { icon: "🔒", title: "Conformité NF525", desc: "Journal d'audit, archive exportable, attestation PDF. Obligatoire en France." },
+  { icon: "👥", title: "Multi-caissiers", desc: "Profils avec PIN, rôles gérant / caissier, session de caisse." },
+  { icon: "🖥️", title: "Écran client", desc: "Affichage du panier en temps réel sur un second moniteur." },
+  { icon: "🔄", title: "Mise à jour auto", desc: "Nouvelles versions livrées silencieusement, sans action de votre part." },
+];
+
+const profiles = [
+  { icon: "🍽️", label: "Restaurant" },
+  { icon: "☕", label: "Café / Bar" },
+  { icon: "🥖", label: "Boulangerie" },
+  { icon: "🛒", label: "Épicerie" },
+  { icon: "🚚", label: "Food truck" },
+];
+
+const proFeatures = ["Tout le plan Libre", "Multi-postes illimités", "Sauvegarde cloud", "Affichage cuisine (KDS)", "Statistiques avancées", "Support prioritaire"];
+const freeFeatures = ["Toutes les fonctionnalités", "Conformité NF525", "Mises à jour automatiques", "Open source", "Support communautaire"];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <!-- Nav -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-white/5 bg-zinc-950/80 backdrop-blur-md">
+    <div class="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between">
+      <span class="font-black text-lg tracking-tight">LDC</span>
+      <nav class="flex items-center gap-6 text-sm text-zinc-400">
+        <a href="#fonctionnalites" class="hover:text-white transition-colors">Fonctionnalités</a>
+        <a href="#tarifs" class="hover:text-white transition-colors">Tarifs</a>
+        <a href={GITHUB} target="_blank" class="hover:text-white transition-colors">GitHub</a>
+        <a href={KOFI} target="_blank" class="px-3 py-1.5 bg-orange-500 text-white text-xs font-bold rounded-lg hover:opacity-90 transition-opacity">
+          Soutenir ☕
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-6 text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold mb-8">
+        ✦ Open source · Gratuit · Conforme NF525
+      </div>
+
+      <h1 class="text-5xl sm:text-6xl font-black tracking-tight leading-tight mb-6">
+        Un logiciel de caisse<br />
+        <span class="text-orange-500">ne devrait pas coûter</span><br />
+        2 400 € par an.
+      </h1>
+
+      <p class="text-zinc-400 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+        LDC est un logiciel de caisse libre, conforme NF525, sans abonnement.
+        Pour les restaurants, cafés et commerces indépendants qui refusent de payer
+        pour ce qui devrait être un droit.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <a href={DL_MAC_ARM} class="flex items-center gap-2 px-5 py-3 bg-white text-zinc-900 font-bold text-sm rounded-xl hover:bg-zinc-100 transition-colors">
+          🍎 macOS Apple Silicon
+        </a>
+        <a href={DL_MAC_INTEL} class="flex items-center gap-2 px-5 py-3 bg-white/10 text-white font-bold text-sm rounded-xl hover:bg-white/15 transition-colors border border-white/10">
+          🍎 macOS Intel
+        </a>
+        <a href={DL_WIN} class="flex items-center gap-2 px-5 py-3 bg-white/10 text-white font-bold text-sm rounded-xl hover:bg-white/15 transition-colors border border-white/10">
+          🪟 Windows
+        </a>
+      </div>
+      <p class="text-zinc-600 text-xs mt-5">v{VERSION} · macOS & Windows · Mise à jour automatique</p>
+    </section>
+
+    <!-- Stats -->
+    <section class="border-y border-white/5 bg-white/[0.02] py-12 px-6">
+      <div class="max-w-3xl mx-auto grid grid-cols-3 gap-8 text-center">
+        <div>
+          <p class="text-3xl font-black text-white">0 €</p>
+          <p class="text-zinc-500 text-sm mt-1">par mois pour toujours</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black text-orange-500">NF525</p>
+          <p class="text-zinc-500 text-sm mt-1">conformité légale incluse</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black text-white">100%</p>
+          <p class="text-zinc-500 text-sm mt-1">open source</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pour qui -->
+    <section class="py-20 px-6 max-w-5xl mx-auto">
+      <h2 class="text-2xl font-black text-center mb-12 uppercase tracking-tight">Fait pour vous si vous êtes…</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+        {profiles.map((item) => (
+          <div class="flex flex-col items-center gap-3 p-5 rounded-2xl bg-white/5 border border-white/5 hover:border-white/10 transition-colors">
+            <span class="text-3xl">{item.icon}</span>
+            <span class="text-sm font-semibold">{item.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Fonctionnalités -->
+    <section id="fonctionnalites" class="py-20 px-6 bg-white/[0.02] border-y border-white/5">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-2xl font-black text-center mb-12 uppercase tracking-tight">Ce que vous obtenez</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {features.map((f) => (
+            <div class="p-6 rounded-2xl bg-zinc-900 border border-white/5">
+              <span class="text-2xl">{f.icon}</span>
+              <h3 class="font-bold mt-3 mb-1">{f.title}</h3>
+              <p class="text-zinc-500 text-sm leading-relaxed">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarifs -->
+    <section id="tarifs" class="py-20 px-6 max-w-4xl mx-auto">
+      <h2 class="text-2xl font-black text-center mb-4 uppercase tracking-tight">Tarifs</h2>
+      <p class="text-center text-zinc-500 mb-12">Le plan Libre est complet — ce n'est pas un freemium castré.</p>
+      <div class="grid sm:grid-cols-2 gap-6">
+        <div class="p-8 rounded-3xl bg-zinc-900 border border-white/10 flex flex-col">
+          <div class="mb-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Libre</p>
+            <p class="text-4xl font-black">Gratuit</p>
+            <p class="text-zinc-500 text-sm mt-1">pour toujours · 1 poste</p>
+          </div>
+          <ul class="space-y-3 text-sm flex-1">
+            {freeFeatures.map((item) => (
+              <li class="flex items-center gap-2">
+                <span class="text-green-400">✓</span>{item}
+              </li>
+            ))}
+          </ul>
+          <a href={DL_MAC_ARM} class="mt-8 block text-center px-5 py-3 bg-white text-zinc-900 font-bold text-sm rounded-xl hover:bg-zinc-100 transition-colors">
+            Télécharger
+          </a>
+        </div>
+
+        <div class="p-8 rounded-3xl bg-zinc-900 border border-orange-500/30 flex flex-col relative overflow-hidden">
+          <div class="absolute top-4 right-4 px-2 py-1 bg-orange-500 text-white text-[10px] font-black uppercase rounded-lg">Bientôt</div>
+          <div class="mb-6">
+            <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Pro</p>
+            <p class="text-4xl font-black">~15 €<span class="text-lg font-normal text-zinc-500">/mois</span></p>
+            <p class="text-zinc-500 text-sm mt-1">multi-postes · cloud</p>
+          </div>
+          <ul class="space-y-3 text-sm flex-1">
+            {proFeatures.map((item) => (
+              <li class="flex items-center gap-2">
+                <span class="text-orange-400">✓</span>{item}
+              </li>
+            ))}
+          </ul>
+          <button disabled class="mt-8 text-center px-5 py-3 bg-orange-500/20 text-orange-400 font-bold text-sm rounded-xl opacity-60 cursor-not-allowed">
+            En développement
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ko-fi -->
+    <section class="py-20 px-6 border-t border-white/5 text-center">
+      <div class="max-w-xl mx-auto">
+        <p class="text-4xl mb-6">🐱</p>
+        <h2 class="text-2xl font-black mb-4 uppercase tracking-tight">Un projet indépendant</h2>
+        <p class="text-zinc-400 leading-relaxed mb-8">
+          LDC est développé par une seule personne, en dehors des heures de boulot.
+          Le code est public, la feuille de route est ouverte.
+          Si ça vous aide, un café est toujours bienvenu.
+        </p>
+        <div class="flex items-center justify-center gap-4">
+          <a href={KOFI} target="_blank" class="px-5 py-3 bg-orange-500 text-white font-bold text-sm rounded-xl hover:opacity-90 transition-opacity">
+            Offrir un café ☕
+          </a>
+          <a href={GITHUB} target="_blank" class="px-5 py-3 bg-white/10 text-white font-bold text-sm rounded-xl hover:bg-white/15 transition-colors border border-white/10">
+            Voir le code
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/5 py-8 px-6 text-center text-zinc-600 text-sm">
+    <p>LDC v{VERSION} · Open source · <a href={GITHUB} class="hover:text-zinc-400 transition-colors">GitHub</a> · <a href={KOFI} class="hover:text-zinc-400 transition-colors">Ko-fi</a></p>
+  </footer>
+</Layout>
