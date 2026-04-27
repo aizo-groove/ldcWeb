@@ -51,18 +51,17 @@ try {
 const fmt = (n: number) => new Intl.NumberFormat("fr-FR").format(n);
 
 const competitors = [
-  { name: "Lightspeed",   price: 150 },
-  { name: "Zelty",        price: 79  },
-  { name: "Innovorder",   price: 99  },
-  { name: "Addition",     price: 69  },
+  { name: "Entrée de gamme",   price: 50  },
+  { name: "Mid-range",         price: 100 },
+  { name: "Haut de gamme",     price: 180 },
 ];
 
 const kofiTiers = [
-  { emoji: "🤷", label: "Prix conscient",  amount: "0 €",  desc: "Tu utilises, c'est déjà formidable. Vraiment." },
-  { emoji: "☕", label: "Prix café",       amount: "3 €",  desc: "Les croquettes de Mimi le chat. Il mange cher." },
-  { emoji: "🔧", label: "Prix outil",      amount: "10 €", desc: "Une licence de dev tool. Je vous vois, JetBrains." },
-  { emoji: "🖥️", label: "Prix matériel",   amount: "30 €", desc: "Du hardware de test pour que LDC tourne partout." },
-  { emoji: "🚀", label: "Prix militant",   amount: "50 €", desc: "Un mois d'abo concurrent économisé, réinvesti ici." },
+  { emoji: "🤷", label: "Prix conscient",  amount: "0 €",  desc: "Tu fais le calcul honnête : temps investi, valeur rendue, ce que tu peux mettre. Si le résultat c'est 0, c'est ok." },
+  { emoji: "☕", label: "Prix café",       amount: "3 €",  desc: "Les croquettes de Neij. Il a des goûts de luxe pour un chat de développeur." },
+  { emoji: "🔧", label: "Prix outil",      amount: "10 €", desc: "Une licence d'outil de dev. Je vous vois, JetBrains." },
+  { emoji: "🖥️", label: "Prix matériel",   amount: "30 €", desc: "Du hardware de test pour que LDC tourne partout, même sur les vieilles machines." },
+  { emoji: "🚀", label: "Prix militant",   amount: "50 €", desc: "Ce que vous économisez en un mois réinvesti dans les prochains développements." },
 ];
 
 // TODO: remplacer par de vrais témoignages (Ko-fi, retours directs, GitHub Discussions)
@@ -255,27 +254,27 @@ const roadmapPlanned = [
         <!-- Accroche -->
         <h2 class="text-2xl font-black text-center mb-3 uppercase tracking-tight">Combien ça coûte ?</h2>
         <p class="text-center text-zinc-500 mb-14 text-sm">
-          LDC est gratuit. Voici ce que vous évitez de payer ailleurs.
+          LDC est gratuit. Voici ce que le marché demande habituellement.
         </p>
 
-        <!-- Comparatif concurrents -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
+        <!-- Comparatif générique -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           {competitors.map((c) => (
             <div class="p-4 rounded-2xl bg-zinc-900 border border-white/5 text-center">
-              <p class="text-zinc-500 text-xs font-semibold mb-2">{c.name}</p>
+              <p class="text-zinc-500 text-xs font-semibold mb-2">Logiciel de caisse<br/>{c.name}</p>
               <p class="text-xl font-black text-red-400">{c.price} €<span class="text-xs font-normal text-zinc-600">/mois</span></p>
               <p class="text-zinc-700 text-xs mt-1">{c.price * 12} € /an</p>
             </div>
           ))}
           <div class="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 text-center">
-            <p class="text-orange-400 text-xs font-semibold mb-2">LDC</p>
+            <p class="text-orange-400 text-xs font-semibold mb-2">LDC<br/>Open source</p>
             <p class="text-xl font-black text-white">0 €<span class="text-xs font-normal text-zinc-500">/mois</span></p>
             <p class="text-orange-500/60 text-xs mt-1">pour toujours</p>
           </div>
         </div>
 
         <p class="text-center text-zinc-600 text-xs mb-16">
-          Économie moyenne : <span class="text-white font-bold">1 000 à 1 800 € par an</span> selon le concurrent.
+          Économie potentielle : <span class="text-white font-bold">600 à 2 000 € par an</span> selon la solution remplacée.
         </p>
 
         <!-- Ko-fi tiers -->
