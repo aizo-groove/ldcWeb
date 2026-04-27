@@ -97,35 +97,66 @@ const roadmapPlanned = [
 
   <main>
     <!-- Hero -->
-    <section class="pt-32 pb-24 px-6 text-center max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold mb-8">
-        ✦ Open source · Gratuit · Conforme NF525
+    <section class="pt-32 pb-16 px-6 max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Texte -->
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-400 text-xs font-semibold mb-8">
+            ✦ Open source · Gratuit · Conforme NF525
+          </div>
+
+          <h1 class="text-5xl sm:text-6xl font-black tracking-tight leading-tight mb-6">
+            Un logiciel de caisse<br />
+            <span class="text-orange-500">ne devrait pas coûter</span><br />
+            2 400 € par an.
+          </h1>
+
+          <p class="text-zinc-400 text-lg leading-relaxed mb-10 max-w-xl">
+            LDC est un logiciel de caisse libre, conforme NF525, sans abonnement.
+            Pour les restaurants, cafés et commerces indépendants qui refusent de payer
+            pour ce qui devrait être un droit.
+          </p>
+
+          <div class="flex flex-wrap gap-3">
+            <a href={DL_MAC_ARM} class="flex items-center gap-2 px-5 py-3 bg-white text-zinc-900 font-bold text-sm rounded-xl hover:bg-zinc-100 transition-colors">
+              🍎 macOS Apple Silicon
+            </a>
+            <a href={DL_MAC_INTEL} class="flex items-center gap-2 px-5 py-3 bg-white/10 text-white font-bold text-sm rounded-xl hover:bg-white/15 transition-colors border border-white/10">
+              🍎 macOS Intel
+            </a>
+            <a href={DL_WIN} class="flex items-center gap-2 px-5 py-3 bg-white/10 text-white font-bold text-sm rounded-xl hover:bg-white/15 transition-colors border border-white/10">
+              🪟 Windows
+            </a>
+          </div>
+          <p class="text-zinc-600 text-xs mt-5">v{VERSION} · macOS & Windows · Mise à jour automatique</p>
+        </div>
+
+        <!-- Screenshot -->
+        <div class="relative">
+          <!-- Halo orange derrière la fenêtre -->
+          <div class="absolute inset-0 bg-orange-500/10 blur-3xl rounded-3xl"></div>
+          <!-- Fenêtre macOS fictive -->
+          <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
+            <!-- Barre de titre -->
+            <div class="flex items-center gap-1.5 px-4 py-3 bg-zinc-800 border-b border-white/5">
+              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+              <span class="ml-3 text-xs text-zinc-500 font-medium">LDC — Logiciel de Caisse</span>
+            </div>
+            <!-- Screenshot -->
+            <img
+              src="/screenshot.png"
+              alt="Interface de LDC — logiciel de caisse"
+              class="w-full block"
+              width="800"
+              height="500"
+            />
+          </div>
+        </div>
+
       </div>
-
-      <h1 class="text-5xl sm:text-6xl font-black tracking-tight leading-tight mb-6">
-        Un logiciel de caisse<br />
-        <span class="text-orange-500">ne devrait pas coûter</span><br />
-        2 400 € par an.
-      </h1>
-
-      <p class="text-zinc-400 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
-        LDC est un logiciel de caisse libre, conforme NF525, sans abonnement.
-        Pour les restaurants, cafés et commerces indépendants qui refusent de payer
-        pour ce qui devrait être un droit.
-      </p>
-
-      <div class="flex flex-wrap items-center justify-center gap-3">
-        <a href={DL_MAC_ARM} class="flex items-center gap-2 px-5 py-3 bg-white text-zinc-900 font-bold text-sm rounded-xl hover:bg-zinc-100 transition-colors">
-          🍎 macOS Apple Silicon
-        </a>
-        <a href={DL_MAC_INTEL} class="flex items-center gap-2 px-5 py-3 bg-white/10 text-white font-bold text-sm rounded-xl hover:bg-white/15 transition-colors border border-white/10">
-          🍎 macOS Intel
-        </a>
-        <a href={DL_WIN} class="flex items-center gap-2 px-5 py-3 bg-white/10 text-white font-bold text-sm rounded-xl hover:bg-white/15 transition-colors border border-white/10">
-          🪟 Windows
-        </a>
-      </div>
-      <p class="text-zinc-600 text-xs mt-5">v{VERSION} · macOS & Windows · Mise à jour automatique</p>
     </section>
 
     <!-- Stats -->
