@@ -25,6 +25,31 @@ const profiles = [
   { icon: "🚚", label: "Food truck" },
 ];
 
+// GitHub stats fetched at build time
+let ghStars = 0;
+let ghDownloads = 0;
+let ghReleases = 0;
+try {
+  const [repoRes, releasesRes] = await Promise.all([
+    fetch("https://api.github.com/repos/aizo-groove/ldc", {
+      headers: { Accept: "application/vnd.github.v3+json" },
+    }),
+    fetch("https://api.github.com/repos/aizo-groove/ldc/releases?per_page=100", {
+      headers: { Accept: "application/vnd.github.v3+json" },
+    }),
+  ]);
+  const repo = await repoRes.json();
+  const releases: any[] = await releasesRes.json();
+  ghStars = repo.stargazers_count ?? 0;
+  ghReleases = releases.length ?? 0;
+  ghDownloads = releases.reduce(
+    (sum, r) => sum + (r.assets ?? []).reduce((s: number, a: any) => s + (a.download_count ?? 0), 0),
+    0
+  );
+} catch {}
+
+const fmt = (n: number) => new Intl.NumberFormat("fr-FR").format(n);
+
 const proFeatures = ["Tout le plan Libre", "Multi-postes illimités", "Sauvegarde cloud", "Affichage cuisine (KDS)", "Statistiques avancées", "Support prioritaire"];
 const freeFeatures = ["Toutes les fonctionnalités", "Conformité NF525", "Mises à jour automatiques", "Open source", "Support communautaire"];
 
@@ -105,7 +130,7 @@ const roadmapPlanned = [
 
     <!-- Stats -->
     <section class="border-y border-white/5 bg-white/[0.02] py-12 px-6">
-      <div class="max-w-3xl mx-auto grid grid-cols-3 gap-8 text-center">
+      <div class="max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 text-center">
         <div>
           <p class="text-3xl font-black text-white">0 €</p>
           <p class="text-zinc-500 text-sm mt-1">par mois pour toujours</p>
@@ -114,9 +139,17 @@ const roadmapPlanned = [
           <p class="text-3xl font-black text-orange-500">NF525</p>
           <p class="text-zinc-500 text-sm mt-1">conformité légale incluse</p>
         </div>
-        <div>
+        <div class="col-span-2 sm:col-span-1">
           <p class="text-3xl font-black text-white">100%</p>
           <p class="text-zinc-500 text-sm mt-1">open source</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black text-white">{ghDownloads > 0 ? fmt(ghDownloads) : "—"}</p>
+          <p class="text-zinc-500 text-sm mt-1">téléchargements</p>
+        </div>
+        <div>
+          <p class="text-3xl font-black text-white">{ghReleases > 0 ? fmt(ghReleases) : "—"}</p>
+          <p class="text-zinc-500 text-sm mt-1">versions publiées</p>
         </div>
       </div>
     </section>
