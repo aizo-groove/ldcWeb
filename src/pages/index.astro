@@ -50,8 +50,20 @@ try {
 
 const fmt = (n: number) => new Intl.NumberFormat("fr-FR").format(n);
 
-const proFeatures = ["Tout le plan Libre", "Multi-postes illimités", "Sauvegarde cloud", "Affichage cuisine (KDS)", "Statistiques avancées", "Support prioritaire"];
-const freeFeatures = ["Toutes les fonctionnalités", "Conformité NF525", "Mises à jour automatiques", "Open source", "Support communautaire"];
+const competitors = [
+  { name: "Lightspeed",   price: 150 },
+  { name: "Zelty",        price: 79  },
+  { name: "Innovorder",   price: 99  },
+  { name: "Addition",     price: 69  },
+];
+
+const kofiTiers = [
+  { emoji: "🤷", label: "Prix conscient",  amount: "0 €",  desc: "Tu utilises, c'est déjà formidable. Vraiment." },
+  { emoji: "☕", label: "Prix café",       amount: "3 €",  desc: "Les croquettes de Mimi le chat. Il mange cher." },
+  { emoji: "🔧", label: "Prix outil",      amount: "10 €", desc: "Une licence de dev tool. Je vous vois, JetBrains." },
+  { emoji: "🖥️", label: "Prix matériel",   amount: "30 €", desc: "Du hardware de test pour que LDC tourne partout." },
+  { emoji: "🚀", label: "Prix militant",   amount: "50 €", desc: "Un mois d'abo concurrent économisé, réinvesti ici." },
+];
 
 // TODO: remplacer par de vrais témoignages (Ko-fi, retours directs, GitHub Discussions)
 const testimonials = [
@@ -237,46 +249,62 @@ const roadmapPlanned = [
     </section>
 
     <!-- Tarifs -->
-    <section id="tarifs" class="py-20 px-6 max-w-4xl mx-auto">
-      <h2 class="text-2xl font-black text-center mb-4 uppercase tracking-tight">Tarifs</h2>
-      <p class="text-center text-zinc-500 mb-12">Le plan Libre est complet — ce n'est pas un freemium castré.</p>
-      <div class="grid sm:grid-cols-2 gap-6">
-        <div class="p-8 rounded-3xl bg-zinc-900 border border-white/10 flex flex-col">
-          <div class="mb-6">
-            <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Libre</p>
-            <p class="text-4xl font-black">Gratuit</p>
-            <p class="text-zinc-500 text-sm mt-1">pour toujours · 1 poste</p>
+    <section id="tarifs" class="py-20 px-6 bg-white/[0.02] border-y border-white/5">
+      <div class="max-w-4xl mx-auto">
+
+        <!-- Accroche -->
+        <h2 class="text-2xl font-black text-center mb-3 uppercase tracking-tight">Combien ça coûte ?</h2>
+        <p class="text-center text-zinc-500 mb-14 text-sm">
+          LDC est gratuit. Voici ce que vous évitez de payer ailleurs.
+        </p>
+
+        <!-- Comparatif concurrents -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
+          {competitors.map((c) => (
+            <div class="p-4 rounded-2xl bg-zinc-900 border border-white/5 text-center">
+              <p class="text-zinc-500 text-xs font-semibold mb-2">{c.name}</p>
+              <p class="text-xl font-black text-red-400">{c.price} €<span class="text-xs font-normal text-zinc-600">/mois</span></p>
+              <p class="text-zinc-700 text-xs mt-1">{c.price * 12} € /an</p>
+            </div>
+          ))}
+          <div class="p-4 rounded-2xl bg-orange-500/10 border border-orange-500/30 text-center">
+            <p class="text-orange-400 text-xs font-semibold mb-2">LDC</p>
+            <p class="text-xl font-black text-white">0 €<span class="text-xs font-normal text-zinc-500">/mois</span></p>
+            <p class="text-orange-500/60 text-xs mt-1">pour toujours</p>
           </div>
-          <ul class="space-y-3 text-sm flex-1">
-            {freeFeatures.map((item) => (
-              <li class="flex items-center gap-2">
-                <span class="text-green-400">✓</span>{item}
-              </li>
-            ))}
-          </ul>
-          <a href={DL_MAC_ARM} class="mt-8 block text-center px-5 py-3 bg-white text-zinc-900 font-bold text-sm rounded-xl hover:bg-zinc-100 transition-colors">
-            Télécharger
-          </a>
         </div>
 
-        <div class="p-8 rounded-3xl bg-zinc-900 border border-orange-500/30 flex flex-col relative overflow-hidden">
-          <div class="absolute top-4 right-4 px-2 py-1 bg-orange-500 text-white text-[10px] font-black uppercase rounded-lg">Bientôt</div>
-          <div class="mb-6">
-            <p class="text-xs font-bold uppercase tracking-widest text-zinc-500 mb-2">Pro</p>
-            <p class="text-4xl font-black">~15 €<span class="text-lg font-normal text-zinc-500">/mois</span></p>
-            <p class="text-zinc-500 text-sm mt-1">multi-postes · cloud</p>
-          </div>
-          <ul class="space-y-3 text-sm flex-1">
-            {proFeatures.map((item) => (
-              <li class="flex items-center gap-2">
-                <span class="text-orange-400">✓</span>{item}
-              </li>
-            ))}
-          </ul>
-          <button disabled class="mt-8 text-center px-5 py-3 bg-orange-500/20 text-orange-400 font-bold text-sm rounded-xl opacity-60 cursor-not-allowed">
-            En développement
-          </button>
+        <p class="text-center text-zinc-600 text-xs mb-16">
+          Économie moyenne : <span class="text-white font-bold">1 000 à 1 800 € par an</span> selon le concurrent.
+        </p>
+
+        <!-- Ko-fi tiers -->
+        <h3 class="text-lg font-black text-center mb-2 uppercase tracking-tight">Soutenir le projet</h3>
+        <p class="text-center text-zinc-500 text-sm mb-10">
+          Aucune obligation. Si LDC vous aide, un geste est toujours bienvenu.
+        </p>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          {kofiTiers.map((tier, i) => (
+            <a
+              href={KOFI}
+              target="_blank"
+              class={`group p-5 rounded-2xl border flex flex-col gap-3 transition-all hover:-translate-y-0.5 ${
+                i === 4
+                  ? "bg-orange-500/10 border-orange-500/30 hover:border-orange-500/60"
+                  : "bg-zinc-900 border-white/5 hover:border-white/15"
+              }`}
+            >
+              <span class="text-2xl">{tier.emoji}</span>
+              <div>
+                <p class={`font-black text-lg ${i === 4 ? "text-orange-400" : "text-white"}`}>{tier.amount}</p>
+                <p class="text-xs font-semibold text-zinc-400">{tier.label}</p>
+              </div>
+              <p class="text-zinc-600 text-xs leading-relaxed">{tier.desc}</p>
+            </a>
+          ))}
         </div>
+
       </div>
     </section>
 
