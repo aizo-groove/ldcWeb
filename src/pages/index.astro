@@ -27,6 +27,30 @@ const profiles = [
 
 const proFeatures = ["Tout le plan Libre", "Multi-postes illimités", "Sauvegarde cloud", "Affichage cuisine (KDS)", "Statistiques avancées", "Support prioritaire"];
 const freeFeatures = ["Toutes les fonctionnalités", "Conformité NF525", "Mises à jour automatiques", "Open source", "Support communautaire"];
+
+const roadmapDone = [
+  "Assistant d'onboarding en 5 étapes",
+  "Visite guidée interactive de l'application",
+  "Plan de salle & gestion des tables",
+  "Écran client sur second moniteur",
+  "Conformité NF525 — archive & attestation PDF",
+  "Multi-caissiers avec PIN et rôles",
+  "Gestion des appareils (imprimante, tiroir-caisse, scanner…)",
+  "Mise à jour automatique silencieuse",
+  "Notes de version à l'ouverture",
+];
+
+const roadmapNext = [
+  { label: "Retours utilisateurs → GitHub Issues", desc: "Vos signalements arrivent directement aux développeurs." },
+];
+
+const roadmapPlanned = [
+  { id: "tablets", icon: "📱", label: "Tablettes Android & iPad", desc: "Prise de commande en salle sur tablette." },
+  { id: "linux",   icon: "🐧", label: "Linux (Raspberry Pi)",     desc: "Pour les kits hardware clé en main." },
+  { id: "kds",     icon: "🍽️", label: "Affichage cuisine (KDS)",  desc: "Écran en cuisine, commandes en temps réel." },
+  { id: "cloud",   icon: "☁️", label: "Sauvegarde cloud",          desc: "Vos données synchronisées et sécurisées." },
+  { id: "multipos",icon: "🖧", label: "Multi-postes",              desc: "Plusieurs caisses sur le même réseau." },
+];
 ---
 
 <Layout>
@@ -36,6 +60,7 @@ const freeFeatures = ["Toutes les fonctionnalités", "Conformité NF525", "Mises
       <span class="font-black text-lg tracking-tight">LDC</span>
       <nav class="flex items-center gap-6 text-sm text-zinc-400">
         <a href="#fonctionnalites" class="hover:text-white transition-colors">Fonctionnalités</a>
+        <a href="#roadmap" class="hover:text-white transition-colors">Roadmap</a>
         <a href="#tarifs" class="hover:text-white transition-colors">Tarifs</a>
         <a href={GITHUB} target="_blank" class="hover:text-white transition-colors">GitHub</a>
         <a href={KOFI} target="_blank" class="px-3 py-1.5 bg-orange-500 text-white text-xs font-bold rounded-lg hover:opacity-90 transition-opacity">
@@ -169,6 +194,79 @@ const freeFeatures = ["Toutes les fonctionnalités", "Conformité NF525", "Mises
       </div>
     </section>
 
+    <!-- Roadmap -->
+    <section id="roadmap" class="py-20 px-6 max-w-5xl mx-auto">
+      <h2 class="text-2xl font-black text-center mb-3 uppercase tracking-tight">Feuille de route</h2>
+      <p class="text-center text-zinc-500 mb-14 text-sm">Le projet est actif — voici où on en est et où on va.</p>
+
+      <div class="grid lg:grid-cols-3 gap-8">
+
+        <!-- Fait -->
+        <div>
+          <div class="flex items-center gap-2 mb-5">
+            <span class="text-green-400 text-lg">✅</span>
+            <h3 class="font-black uppercase tracking-tight text-sm">Déjà disponible</h3>
+          </div>
+          <ul class="space-y-2.5">
+            {roadmapDone.map((item) => (
+              <li class="flex items-start gap-2.5 text-sm text-zinc-400">
+                <span class="text-green-400 mt-0.5 shrink-0">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Prochaine version -->
+        <div>
+          <div class="flex items-center gap-2 mb-5">
+            <span class="text-orange-400 text-lg">🔜</span>
+            <h3 class="font-black uppercase tracking-tight text-sm">Version suivante</h3>
+          </div>
+          <div class="space-y-4">
+            {roadmapNext.map((item) => (
+              <div class="p-4 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                <p class="font-semibold text-sm text-orange-300">{item.label}</p>
+                <p class="text-zinc-500 text-xs mt-1">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- En préparation + votes -->
+        <div>
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-zinc-400 text-lg">💡</span>
+            <h3 class="font-black uppercase tracking-tight text-sm">En préparation</h3>
+          </div>
+          <p class="text-zinc-600 text-xs mb-5">Votez pour prioriser ce qui compte le plus pour vous.</p>
+          <div class="space-y-3">
+            {roadmapPlanned.map((item) => (
+              <div class="flex items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-white/10 transition-colors">
+                <button
+                  data-vote-id={item.id}
+                  class="vote-btn shrink-0 flex flex-col items-center gap-0.5 w-10 px-2 py-1.5 rounded-lg bg-white/5 hover:bg-orange-500/20 hover:text-orange-400 transition-all text-zinc-500 border border-white/5 hover:border-orange-500/30"
+                  aria-label={`Voter pour ${item.label}`}
+                >
+                  <span class="text-xs leading-none">▲</span>
+                  <span class="vote-count text-xs font-bold leading-none" data-id={item.id}>—</span>
+                </button>
+                <div class="min-w-0">
+                  <p class="font-semibold text-sm">{item.icon} {item.label}</p>
+                  <p class="text-zinc-500 text-xs mt-0.5">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-center text-zinc-600 text-xs mt-12">
+        Roadmap complète sur <a href={GITHUB + "/blob/main/docs/ROADMAP.md"} target="_blank" class="hover:text-zinc-400 transition-colors underline underline-offset-2">GitHub</a>
+      </p>
+    </section>
+
     <!-- Ko-fi -->
     <section class="py-20 px-6 border-t border-white/5 text-center">
       <div class="max-w-xl mx-auto">
@@ -194,4 +292,70 @@ const freeFeatures = ["Toutes les fonctionnalités", "Conformité NF525", "Mises
   <footer class="border-t border-white/5 py-8 px-6 text-center text-zinc-600 text-sm">
     <p>LDC v{VERSION} · Open source · <a href={GITHUB} class="hover:text-zinc-400 transition-colors">GitHub</a> · <a href={KOFI} class="hover:text-zinc-400 transition-colors">Ko-fi</a></p>
   </footer>
+
+<script>
+  const API = "/api/votes";
+  const STORAGE_KEY = "ldc_votes";
+
+  function getVoted(): Set<string> {
+    try {
+      return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "[]"));
+    } catch {
+      return new Set();
+    }
+  }
+
+  function saveVoted(voted: Set<string>) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...voted]));
+  }
+
+  function applyVotedStyle(btn: HTMLButtonElement) {
+    btn.classList.add("!bg-orange-500/20", "!text-orange-400", "!border-orange-500/30");
+    btn.disabled = true;
+  }
+
+  async function loadCounts() {
+    try {
+      const res = await fetch(API);
+      if (!res.ok) return;
+      const data: Record<string, number> = await res.json();
+      document.querySelectorAll<HTMLElement>(".vote-count").forEach((el) => {
+        const id = el.dataset.id!;
+        el.textContent = String(data[id] ?? 0);
+      });
+    } catch {}
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    await loadCounts();
+
+    const voted = getVoted();
+    document.querySelectorAll<HTMLButtonElement>(".vote-btn").forEach((btn) => {
+      const id = btn.dataset.voteId!;
+      if (voted.has(id)) applyVotedStyle(btn);
+
+      btn.addEventListener("click", async () => {
+        if (voted.has(id)) return;
+        voted.add(id);
+        saveVoted(voted);
+        applyVotedStyle(btn);
+
+        const countEl = btn.querySelector<HTMLElement>(".vote-count")!;
+        countEl.textContent = String((parseInt(countEl.textContent ?? "0") || 0) + 1);
+
+        try {
+          const res = await fetch(API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id }),
+          });
+          if (res.ok) {
+            const { count } = await res.json();
+            countEl.textContent = String(count);
+          }
+        } catch {}
+      });
+    });
+  });
+</script>
 </Layout>
