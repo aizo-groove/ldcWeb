@@ -103,11 +103,13 @@ const roadmapNext = [
 ];
 
 const roadmapPlanned = [
-  { id: "tablets", icon: "📱", label: "Tablettes Android & iPad", desc: "Prise de commande en salle sur tablette." },
-  { id: "linux",   icon: "🐧", label: "Linux (Raspberry Pi)",     desc: "Pour les kits hardware clé en main." },
-  { id: "kds",     icon: "🍽️", label: "Affichage cuisine (KDS)",  desc: "Écran en cuisine, commandes en temps réel." },
-  { id: "cloud",   icon: "☁️", label: "Sauvegarde cloud",          desc: "Vos données synchronisées et sécurisées." },
-  { id: "multipos",icon: "🖧", label: "Multi-postes",              desc: "Plusieurs caisses sur le même réseau." },
+  { id: "tablets",  icon: "📱", label: "Tablettes Android & iPad",     desc: "Prise de commande en salle sur tablette." },
+  { id: "linux",    icon: "🐧", label: "Linux (Raspberry Pi)",          desc: "Pour les kits hardware clé en main." },
+  { id: "kds",      icon: "🍽️", label: "Affichage cuisine (KDS)",       desc: "Écran en cuisine, commandes en temps réel." },
+  { id: "cloud",    icon: "☁️", label: "Sauvegarde cloud",               desc: "Vos données synchronisées et sécurisées." },
+  { id: "multipos", icon: "🖧", label: "Multi-postes",                   desc: "Plusieurs caisses sur le même réseau." },
+  { id: "scale",    icon: "⚖️", label: "Balance connectée & vrac",       desc: "Vente au poids pour épiceries et marchés." },
+  { id: "stats",    icon: "📊", label: "Tableau de bord & statistiques", desc: "CA, top produits, heures de pointe, ticket moyen." },
 ];
 ---
 
@@ -429,8 +431,71 @@ const roadmapPlanned = [
     </section>
   </main>
 
-  <footer class="border-t border-white/5 py-8 px-6 text-center text-zinc-600 text-sm">
-    <p>LDC v{VERSION} · Open source · <a href={GITHUB} class="hover:text-zinc-400 transition-colors">GitHub</a> · <a href={KOFI} class="hover:text-zinc-400 transition-colors">Ko-fi</a></p>
+  <footer class="border-t border-white/5 pt-12 pb-8 px-6">
+
+    <!-- Mentions légales -->
+    <div class="max-w-4xl mx-auto mb-10">
+      <details class="group">
+        <summary class="cursor-pointer text-xs text-zinc-600 hover:text-zinc-400 transition-colors select-none list-none flex items-center justify-center gap-2 mb-0">
+          <span class="group-open:hidden">▸</span>
+          <span class="hidden group-open:inline">▾</span>
+          Mentions légales &amp; clause de non-responsabilité
+        </summary>
+
+        <div class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 text-xs text-zinc-600 leading-relaxed">
+
+          <div>
+            <p class="font-bold text-zinc-500 uppercase tracking-widest text-[10px] mb-2">Éditeur</p>
+            <p>Enzo Schwander<br/>
+            <a href="mailto:enzo.schwander@occidev31.com" class="hover:text-zinc-400 transition-colors">enzo.schwander@occidev31.com</a><br/>
+            <a href={GITHUB} target="_blank" class="hover:text-zinc-400 transition-colors">github.com/aizo-groove</a></p>
+          </div>
+
+          <div>
+            <p class="font-bold text-zinc-500 uppercase tracking-widest text-[10px] mb-2">Hébergement</p>
+            <p>Vercel Inc.<br/>
+            340 Pine Street, Suite 701<br/>
+            San Francisco, CA 94104 — USA<br/>
+            <a href="https://vercel.com" target="_blank" class="hover:text-zinc-400 transition-colors">vercel.com</a></p>
+          </div>
+
+          <div>
+            <p class="font-bold text-zinc-500 uppercase tracking-widest text-[10px] mb-2">Licence</p>
+            <p>LDC est distribué sous licence <a href={GITHUB + "/blob/main/LICENSE"} target="_blank" class="hover:text-zinc-400 transition-colors underline underline-offset-2">MIT</a>.
+            Utilisation, modification et redistribution libres sous réserve de conserver la notice de copyright.</p>
+          </div>
+
+          <div class="sm:col-span-2 lg:col-span-3 border-t border-white/5 pt-5 mt-1">
+            <p class="font-bold text-zinc-500 uppercase tracking-widest text-[10px] mb-2">Clause de non-responsabilité</p>
+            <p class="mb-3">
+              LDC est fourni <strong class="text-zinc-500">« tel quel » (AS IS)</strong>, sans garantie d'aucune sorte, expresse ou implicite.
+              L'éditeur ne garantit pas l'absence d'erreurs, l'adéquation à un usage particulier, ni la conformité aux obligations fiscales spécifiques de votre établissement.
+            </p>
+            <p class="mb-3">
+              <strong class="text-zinc-500">Responsabilité fiscale :</strong> l'utilisateur (commerçant, restaurateur ou tout professionnel) reste seul responsable de la conformité de son établissement aux obligations fiscales françaises, notamment à l'article 88 de la loi de finances 2016 (référentiel NF525).
+              LDC implémente les mécanismes techniques NF525 mais n'a pas obtenu de certification officielle par un organisme accrédité AFNOR.
+              Consultez un expert-comptable pour toute question fiscale.
+            </p>
+            <p class="mb-3">
+              <strong class="text-zinc-500">Données personnelles :</strong> LDC fonctionne entièrement en local — aucune donnée de transaction n'est transmise à l'éditeur.
+              L'utilisateur est responsable de traitement au sens du RGPD pour les données gérées via le logiciel.
+              Ce site n'utilise pas de cookies de traçage ni d'analytique tiers.
+            </p>
+            <p>
+              <strong class="text-zinc-500">Droit applicable :</strong> droit français.
+              Document complet : <a href={GITHUB + "/blob/main/docs/MENTIONS_LEGALES.md"} target="_blank" class="hover:text-zinc-400 transition-colors underline underline-offset-2">docs/MENTIONS_LEGALES.md</a> sur GitHub.
+            </p>
+          </div>
+
+        </div>
+      </details>
+    </div>
+
+    <!-- Ligne de bas de page -->
+    <p class="text-center text-zinc-600 text-sm">
+      LDC v{VERSION} · Licence MIT · <a href={GITHUB} class="hover:text-zinc-400 transition-colors">GitHub</a> · <a href={KOFI} class="hover:text-zinc-400 transition-colors">Ko-fi</a>
+    </p>
+
   </footer>
 
 <script>
